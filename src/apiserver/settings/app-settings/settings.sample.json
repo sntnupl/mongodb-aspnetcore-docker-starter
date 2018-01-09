@@ -1,0 +1,11 @@
+﻿{
+  "ConnectionStrings": {
+    "MongoDbConnectionUrl": "mongodb://localhost:27017"
+  },
+  "Tokens": {
+    "Issuer": "...",
+    "Audience": "...",
+    "SecretKey": "..."
+  },
+  "ClientOrigin": "http://localhost:5000"
+}

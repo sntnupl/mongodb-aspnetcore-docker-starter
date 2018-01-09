@@ -1,0 +1,8 @@
+settings/**/*.config
+!settings/**/nlog.sample.config
+settings/**/*.json
+!settings/**/settings.sample.json
+settings/**/*.cer
+settings/**/*.key
+settings/**/*.pfx
+
