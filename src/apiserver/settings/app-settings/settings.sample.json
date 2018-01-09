@@ -3,9 +3,9 @@
     "MongoDbConnectionUrl": "mongodb://localhost:27017"
   },
   "Tokens": {
-    "Issuer": "...",
-    "Audience": "...",
-    "SecretKey": "..."
+    "Issuer": "http://www.example.com",
+    "Audience": "http://www.example.com",
+    "SecretKey": "I_AM_NOT_A_SECURE_KEY"
   },
   "ClientOrigin": "http://localhost:5000"
 }
