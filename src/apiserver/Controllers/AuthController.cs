@@ -73,6 +73,7 @@ namespace MongoCore.WebApi.Controllers
         }
         
         [HttpGet("testadmin")]
+        [Authorize(Policy = "Admin")]
         public IActionResult TestAdmin()
         {
             _logger.LogDebug("[GET] api/admin/testadmin");
@@ -105,6 +106,7 @@ namespace MongoCore.WebApi.Controllers
             return claims.ToArray();
         }
 
+        
         private string[] AddRoles(UserDocument user)
         {
             var userRoles = new List<string>();

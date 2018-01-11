@@ -44,12 +44,22 @@ namespace MongoCore.WebApi.Helpers
         
         public static void AddAuthServices(this IServiceCollection services, IAppConfig config)
         {
+            SetupPolicies(services);
             //services.AddSingleton<ITokenProvider>(tokenProvider);
-            
             //SetupCustomValidators(services);
             //SetupPolicies(services);
             //SetupDatabaseContexts(services, config);
             //SetupIdentity(services);
+        }
+
+        private static void SetupPolicies(IServiceCollection services)
+        {
+            services.AddAuthorization(opts => {
+                opts.AddPolicy("Admin", policy => policy.RequireAuthenticatedUser()
+                    .RequireRole("admin")
+                    .RequireClaim("appuser-email"));
+            });
+
         }
     }
 }

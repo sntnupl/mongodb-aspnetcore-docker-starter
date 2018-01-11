@@ -64,6 +64,7 @@ namespace MongoCore.WebApi.Controllers
             return Ok(result);
         }
 
+        [Authorize(Policy = "Admin")]
         [HttpPost("users/{id}/tasks")]
         public async Task<IActionResult> AddTaskForUser(string id, [FromBody] AddTaskDto addTaskDto)
         {
@@ -82,6 +83,7 @@ namespace MongoCore.WebApi.Controllers
                                     taskDto);
         }
 
+        [Authorize(Policy = "Admin")]
         [HttpDelete("users/{idUser}/tasks/{idTask}")]
         public async Task<IActionResult> DeleteTaskForUser(string idUser, string idTask)
         {
@@ -97,6 +99,7 @@ namespace MongoCore.WebApi.Controllers
             return NoContent();
         }
 
+        [Authorize(Policy = "Admin")]
         [HttpPut("users/{idUser}/tasks/{idTask}")]
         public async Task<IActionResult> UpdateTaskForUser(string idUser, string idTask, [FromBody] TaskUpdateDto taskUpdateDto)
         {
@@ -119,9 +122,5 @@ namespace MongoCore.WebApi.Controllers
             if (!result) throw new Exception($"Failed to update task: {idTask}, for author: {idUser}");
             return NoContent();
         }
-        
-        // todo:
-        // 2. allow task add/delete/edit accessible to ONLY Admins
-        
     }
 }
