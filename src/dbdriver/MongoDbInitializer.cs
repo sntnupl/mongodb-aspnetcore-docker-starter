@@ -41,12 +41,14 @@ namespace MongoCore.DbDriver
 
             var task1 = new TaskDocument
             {
+                Id = ObjectId.GenerateNewId(),
                 Name = "Remember the milk!",
                 Description = "",
                 Done = true,
             };
             var task2 = new TaskDocument
             {
+                Id = ObjectId.GenerateNewId(),
                 Name = "update bio",
                 Description = "",
                 Done = false
@@ -71,6 +73,7 @@ namespace MongoCore.DbDriver
                 PasswordHash = PasswordHasher.Generate("jodoe"),
                 Tasks = new List<TaskDocument>(new[]{new TaskDocument
                 {
+                    Id = ObjectId.GenerateNewId(),
                     Name = "John's task 1",
                     Done = false
                 }})
@@ -85,11 +88,13 @@ namespace MongoCore.DbDriver
                 PasswordHash = PasswordHasher.Generate("jndoe"),
                 Tasks = new List<TaskDocument>(new[]{
                     new TaskDocument {
+                        Id = ObjectId.GenerateNewId(),
                         Name = "Jane's task 1",
                         Description = "some description",
                         Done = false
                     }, new TaskDocument
                     {
+                        Id = ObjectId.GenerateNewId(),
                         Name = "Jane's task 2",
                         Description = "some more description",
                         Done = true 

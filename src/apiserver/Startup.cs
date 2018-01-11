@@ -12,7 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using MongoCore.DbDriver;
+using MongoCore.DbDriver.Documents;
 using MongoCore.WebApi.Helpers;
+using MongoCore.WebApi.Models.Users;
 using NLog.Web;
 
 namespace MongoCore.WebApi
@@ -61,8 +63,6 @@ namespace MongoCore.WebApi
             app.AddLogging(loggerFactory, env.IsDevelopment());
             app.AddNLogWeb();
             
-            //app.UseIdentity();
-            //app.AddJwt(LibraryAppConfig);
             app.UseJwtBearerAuthentication(new JwtBearerOptions
             {
                 AutomaticAuthenticate = true,
@@ -76,8 +76,15 @@ namespace MongoCore.WebApi
                     ValidateLifetime = true
                 }
             });
-
             app.UseMvc();
+            
+            AutoMapper.Mapper.Initialize(cfg => {
+                cfg.CreateMap<UserDocument, AppUserDto>()
+                    .ForMember(dest => dest.TaskCount, opt => opt.MapFrom(src => src.Tasks.Count));
+                cfg.CreateMap<TaskDocument, AppUserTaskDto>();
+                cfg.CreateMap<AddTaskDto, TaskDocument>();
+                cfg.CreateMap<TaskUpdateDto, TaskDocument>();
+            });
             
             dbSeeder.EnsureSeedData();
         }

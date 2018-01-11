@@ -39,6 +39,7 @@ namespace MongoCore.WebApi.Helpers
         {
             services.AddTransient<IDbInitializer>(service => new MongoDbInitializer(config.MongoDbConnectionUrl));
             services.AddSingleton<IUserManager>(service => new UserManager(config.MongoDbConnectionUrl));
+            services.AddSingleton<IRepository>(service => new AppRepository(config.MongoDbConnectionUrl));
         }
         
         public static void AddAuthServices(this IServiceCollection services, IAppConfig config)
