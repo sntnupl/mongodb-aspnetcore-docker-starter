@@ -28,14 +28,17 @@ Once MongoDB is installed and running,
 
 ### Deploy the app as a container  
 
-TBD
++ Perform step #1 to #4 above  
++ Make sure you have [installed Docker](https://docs.docker.com/engine/installation/) and installed [Docker-Compose](https://docs.docker.com/engine/installation/)  
++ Make sure you are in `src` directory  
++ Run `docker-compose up`  
 
 
 ## Pending Items  
 
-+ Make the app deployable as a docker container  
-+ Add some more realistic features to the application  
-   - Admin Policies for more granular authorization  
-   - GET/POST/DEL/PUT/PATCH on some resources  
-+ Add Unit Tests  
++ Make the app deployable as a docker container `[✓]`  
++ Add some more realistic features to the application `[✓]`  
+   - Admin Policies for more granular authorization `[✓]`  
+   - GET/POST/DEL/PUT/PATCH on some resources `[✓]`  
++ Add Unit Tests 😃   
 
