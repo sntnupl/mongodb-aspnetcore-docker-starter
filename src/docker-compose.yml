@@ -1,0 +1,32 @@
+version: "3"
+
+services: 
+
+  mongodbc:
+    image: mongo:3.6-jessie
+    ports:
+      - "27017"
+    networks:
+      - backendapi
+    volumes:
+      - "/home/sapaul/bin/mongodb-3.6-docker/data/db/:/data/db"
+
+  
+  apiserver:
+    #image: sntnupl/mongocore-apiserver
+    build: .
+    ports:
+      - "5002"
+    networks:
+      - backendapi
+    environment:
+      - API_HOST=0.0.0.0
+      - API_PORT=5002
+      - MONGODB_URL=mongodb://mongodbc:27017
+
+
+
+networks:
+  backendapi:
+
+    

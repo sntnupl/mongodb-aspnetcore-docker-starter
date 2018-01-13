@@ -12,6 +12,12 @@ namespace MongoCore.WebApi.Helpers
         public AppConfig(IConfiguration configuration)
         {
             InitToDefault();
+            UpdateConfigFromSettings();
+            UpdateConfigFromEnv();
+        }
+
+        private void UpdateConfigFromSettings() 
+        {
             if (!string.IsNullOrEmpty(configuration["ConnectionStrings:MongoDbConnectionUrl"])) 
                 MongoDbConnectionUrl = configuration["ConnectionStrings:MongoDbConnectionUrl"];
             if (!string.IsNullOrEmpty(configuration["ClientOrigin"]))
@@ -23,6 +29,12 @@ namespace MongoCore.WebApi.Helpers
             if (!string.IsNullOrEmpty(configuration["Tokens:SecretKey"]))
                 TokenConfigs.Key = configuration["Tokens:SecretKey"];
         }
+
+	private void UpdateConfigFromEnv() 
+	{
+	    if (!String.IsNullOrEmpty(Environment.GetEnvironmentVariable("MONGODB_URL")))
+	        MongoDbConnectionUrl = Environment.GetEnvironmentVariable("MONGODB_URL");
+	}
         
         public static AppConfig CreateDefaultConfig()
         {

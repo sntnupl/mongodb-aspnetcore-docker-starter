@@ -11,16 +11,19 @@ namespace MongoCore.WebApi
     {
         public static void Main(string[] args)
         {
-            var domain = "localhost";
+            var domain = "0.0.0.0";
             var port = "5000";
+
             if (args.Length == 2) {
                 domain = args[0];
                 port = args[1];
             }
             else {
-                Console.WriteLine("Usage: dotnet run <domain> <port>");
-                return;
-            }
+	        if (!String.IsNullOrEmpty(Environment.GetEnvironmentVariable("API_HOST"))) 
+		    domain = Environment.GetEnvironmentVariable("API_HOST");
+	        if (!String.IsNullOrEmpty(Environment.GetEnvironmentVariable("API_PORT"))) 
+		    domain = Environment.GetEnvironmentVariable("API_PORT");
+	    }
             
             var server = new WebHostBuilder()
                 .UseKestrel()

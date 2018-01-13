@@ -50,6 +50,7 @@ namespace MongoCore.DbDriver
 
         public MongoDbContext(string connection)
         {
+	    Console.WriteLine($">>>>>>>> MONGODB Connection: {connection}");
             _client = new MongoClient(connection);
             _dbs = new List<string>();
             _dbCollections = new Dictionary<string, List<string>>();
