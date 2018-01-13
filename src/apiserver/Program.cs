@@ -22,7 +22,7 @@ namespace MongoCore.WebApi
 	        if (!String.IsNullOrEmpty(Environment.GetEnvironmentVariable("API_HOST"))) 
 		    domain = Environment.GetEnvironmentVariable("API_HOST");
 	        if (!String.IsNullOrEmpty(Environment.GetEnvironmentVariable("API_PORT"))) 
-		    domain = Environment.GetEnvironmentVariable("API_PORT");
+		    port = Environment.GetEnvironmentVariable("API_PORT");
 	    }
             
             var server = new WebHostBuilder()
