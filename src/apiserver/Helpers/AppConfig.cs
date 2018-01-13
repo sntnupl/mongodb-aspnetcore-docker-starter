@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 
 namespace MongoCore.WebApi.Helpers
@@ -12,11 +13,11 @@ namespace MongoCore.WebApi.Helpers
         public AppConfig(IConfiguration configuration)
         {
             InitToDefault();
-            UpdateConfigFromSettings();
+            UpdateConfigFromSettings(configuration);
             UpdateConfigFromEnv();
         }
 
-        private void UpdateConfigFromSettings() 
+        private void UpdateConfigFromSettings(IConfiguration configuration) 
         {
             if (!string.IsNullOrEmpty(configuration["ConnectionStrings:MongoDbConnectionUrl"])) 
                 MongoDbConnectionUrl = configuration["ConnectionStrings:MongoDbConnectionUrl"];
@@ -32,7 +33,7 @@ namespace MongoCore.WebApi.Helpers
 
 	private void UpdateConfigFromEnv() 
 	{
-	    if (!String.IsNullOrEmpty(Environment.GetEnvironmentVariable("MONGODB_URL")))
+	    if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("MONGODB_URL")))
 	        MongoDbConnectionUrl = Environment.GetEnvironmentVariable("MONGODB_URL");
 	}
         
